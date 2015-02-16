@@ -17,7 +17,7 @@ namespace JFrog.Artifactory.Utils
         private const string artifactoryDateFormat = "yyyy-MM-dd'T'HH:mm:ss.ssszzzz";
         private const string validEmailPattern = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*((\\.[A-Za-z]{2,}){1}$)";
 
-        public static Build extractBuild(ArtifactoryBuild task, ArtifactoryConfig artifactoryConfig, BuildInfoLog log)
+        public static Build extractBuild(ArtifactoryBuild task, ArtifactoryConfig artifactoryConfig, MsBuildInfoLog log)
         {
             Build build = new Build
             {
@@ -188,7 +188,7 @@ namespace JFrog.Artifactory.Utils
             return dicVariables;
         }
 
-        private static LicenseControl AddLicenseControl(ArtifactoryConfig artifactoryConfig, BuildInfoLog log)
+        private static LicenseControl AddLicenseControl(ArtifactoryConfig artifactoryConfig, MsBuildInfoLog log)
         {
             LicenseControl licenseControl = new LicenseControl();
 

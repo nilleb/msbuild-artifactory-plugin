@@ -13,7 +13,7 @@ namespace JFrog.Artifactory.Model
 {
     class BuildDeploymentHelper
     {
-        public void deploy(ArtifactoryBuild task, Build build, BuildInfoLog log) 
+        public void deploy(ArtifactoryBuild task, Build build, MsBuildInfoLog log) 
         {
             ArtifactoryBuildInfoClient client = new ArtifactoryBuildInfoClient(task.Url, task.User, task.Password, log);
             client.setProxy(build.deployClient);

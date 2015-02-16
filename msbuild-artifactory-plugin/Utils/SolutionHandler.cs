@@ -12,10 +12,10 @@ namespace JFrog.Artifactory.Utils
     {
         public Build _buildInfo { set; get; }
         private ArtifactoryBuild _task;
-        private BuildInfoLog _log;
+        private MsBuildInfoLog _log;
         private ArtifactoryConfig MainArtifactoryConfiguration { get; set; }
 
-        public SolutionHandler(ArtifactoryBuild task, BuildInfoLog log) 
+        public SolutionHandler(ArtifactoryBuild task, MsBuildInfoLog log) 
         {
             _task = task;
             _log = log;

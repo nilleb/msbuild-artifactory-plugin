@@ -42,7 +42,7 @@ namespace JFrog.Artifactory
         
 
         public Dictionary<string, List<DeployDetails>> deployableArtifactBuilderMap = new Dictionary<string, List<DeployDetails>>();
-        public BuildInfoLog buildInfoLog;
+        public MsBuildInfoLog buildInfoLog;
 
         public ArtifactoryBuild(){}
 
@@ -50,7 +50,7 @@ namespace JFrog.Artifactory
         {
             try
             {
-                buildInfoLog = new BuildInfoLog(Log);
+                buildInfoLog = new MsBuildInfoLog(Log);
 
                 //Incase the MSBuild process is up, and the global variable is still exist.
                 deployableArtifactBuilderMap.Clear();
