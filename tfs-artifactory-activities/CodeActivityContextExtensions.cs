@@ -25,7 +25,7 @@ namespace tfs_artifactory_activities
 
 		public static string GetSourcesDirectory(this CodeActivityContext context)
 		{
-			return GetEnvironmentVariable(WellKnownEnvironmentVariables.SourcesDirectory);
+			return context.GetEnvironmentVariable(WellKnownEnvironmentVariables.SourcesDirectory);
 		}
 	}
 }

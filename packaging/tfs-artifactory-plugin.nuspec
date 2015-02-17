@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Artifactory-TFS-Activities</id>
+    <version>1.1.0</version>
+    <title>TFS Activities for Artifactory</title>
+    <authors>Jfrog</authors>
+    <owners>Jfrog</owners>
+    <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
+    <projectUrl>https://github.com/JFrogDev/msbuild-artifactory-plugin</projectUrl>
+    <iconUrl>http://www.jfrog.com/wp-content/uploads/2014/05/logo.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Artifactory for TFS template developers</description>
+    <summary>Artifactory for TFS template developers</summary>
+    <releaseNotes></releaseNotes>
+    <copyright>Copyright 2014</copyright>
+    <language />
+    <tags>artifactory,tfs</tags>
+    <dependencies>
+      <dependency id="Artifactory-Core" version="1.1.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\tfs-artifactory-activities\lib\*.dll" target="lib\net45" /> 
+  </files>
+</package>
