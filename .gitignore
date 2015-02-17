@@ -180,3 +180,6 @@ FakesAssemblies/
 
 # Nuget Packages
 /**/*.nupkg
+/msbuild-artifactory-plugin/lib/JFrog.Artifactory.dll
+/msbuild-artifactory-plugin/lib/Microsoft.Web.XmlTransform.dll
+/msbuild-artifactory-plugin/lib/NuGet.Core.dll
