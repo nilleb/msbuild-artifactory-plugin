@@ -58,7 +58,7 @@ namespace JFrog.Artifactory.Utils
         /// <summary>
         /// Read all referenced nuget`s in the .csproj calculate their md5, sha1 and id.
         /// </summary>
-        public static void ProccessModule(Build build, ProjectModel project, ArtifactoryBuild _task)
+        public static void ProcessModule(Build build, ProjectModel project, ArtifactoryBuild _task)
         {
             var module = new Module(project.AssemblyName);
 

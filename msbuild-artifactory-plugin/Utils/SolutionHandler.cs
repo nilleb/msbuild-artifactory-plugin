@@ -64,7 +64,7 @@ namespace JFrog.Artifactory.Utils
             var mainProject = mainProjectParser.generate();
             if (mainProject != null)
             {
-                BuildInfoExtractor.ProccessModule(_buildInfo, mainProject, _task);
+                BuildInfoExtractor.ProcessModule(_buildInfo, mainProject, _task);
             }
         }
 
@@ -89,7 +89,7 @@ namespace JFrog.Artifactory.Utils
                 var projectRef = projectParser.generate();
                 if (projectRef != null)
                 {
-                    BuildInfoExtractor.ProccessModule(_buildInfo, projectRef, _task);
+                    BuildInfoExtractor.ProcessModule(_buildInfo, projectRef, _task);
                 }
             }
         }
