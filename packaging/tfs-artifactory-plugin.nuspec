@@ -21,6 +21,6 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="..\tfs-artifactory-activities\lib\*.dll" target="lib\net45" /> 
+    <file src="..\tfs-artifactory-activities\lib\JFrog.Artifactory.TFSActivities.dll" target="lib\net45" /> 
   </files>
 </package>

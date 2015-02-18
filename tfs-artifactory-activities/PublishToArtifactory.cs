@@ -11,7 +11,7 @@ using System.Security.Principal;
 using JFrog.Artifactory.Utils.regexCapturing;
 using Microsoft.TeamFoundation.Build.Activities.Extensions;
 
-namespace tfs_artifactory_activities
+namespace JFrog.Artifactory.TFSActivities
 {
 	public sealed class PublishToArtifactory : CodeActivity
 	{

@@ -9,7 +9,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace tfs_artifactory_activities
+namespace JFrog.Artifactory.TFSActivities
 {
 	class NativeTFSAgent: Agent
 	{

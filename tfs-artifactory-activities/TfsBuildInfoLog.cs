@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Microsoft.TeamFoundation.Build.Workflow.Activities;
 using Microsoft.TeamFoundation.Build.Client;
 
-namespace tfs_artifactory_activities
+namespace JFrog.Artifactory.TFSActivities
 {
 	class TfsBuildInfoLog: IBuildInfoLog
 	{

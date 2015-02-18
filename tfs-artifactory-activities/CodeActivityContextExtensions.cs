@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace tfs_artifactory_activities
+namespace JFrog.Artifactory.TFSActivities
 {
 	static class CodeActivityContextExtensions
 	{
