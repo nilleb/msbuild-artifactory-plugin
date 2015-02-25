@@ -36,30 +36,53 @@ namespace JFrog.Artifactory.TFSActivities
 			IBuildInfoLog log = new TfsBuildInfoLog(context);
 			var client = new ArtifactoryBuildInfoClient(artifactoryUrl, username, password, log);
 
-			BuildArtifacts.resolve(new ProjectModel.DeployAttribute { InputPattern = inputPattern, OutputPattern = outputPattern }, context.GetSourcesDirectory(), targetRepository);
-
-			bool doIndexBuildInfo = context.GetValue(this.DoIndexBuildInfo);
-			if (doIndexBuildInfo)
+			var buildDetail = context.GetBuildDetail();
+			var bi = forgeBuildInfo(new NativeTFSAgent(context), buildDetail);
+			if (bi != null)
 			{
-				var buildDetail = context.GetBuildDetail();
-				var bi = forgeBuildInfo(new NativeTFSAgent(context), buildDetail);
-				client.sendBuildInfo(bi);
+				client.setConnectionTimeout(bi.deployClient);
+
+				var artifacts =
+					BuildArtifacts.resolve(
+						new ProjectModel.DeployAttribute { InputPattern = inputPattern, OutputPattern = outputPattern },
+						context.GetSourcesDirectory(), targetRepository);
+
+				foreach (var artifact in artifacts)
+					client.deployArtifact(artifact);
+
+				bool doIndexBuildInfo = context.GetValue(this.DoIndexBuildInfo);
+				if (doIndexBuildInfo)
+					client.sendBuildInfo(bi);
 			}
 		}
 
 		private static Build forgeBuildInfo(Agent agent, IBuildDetail buildDetail)
 		{
-			var bi = new Build();
-			bi.name = buildDetail.BuildDefinition.Name;
-			bi.number = buildDetail.BuildNumber;
-			bi.agent = agent;
-			bi.principal = WindowsIdentity.GetCurrent().ToString();
-			bi.durationMillis = Convert.ToInt64((DateTime.Now - buildDetail.StartTime).TotalMilliseconds);
-			// It's difficult to say which build tool is being used. It should be an option filled by the TFS Template.
-			bi.buildAgent = new BuildAgent() { name = "Generic", version = "Generic" };
-			bi.buildRetention = new BuildRetention() { count = -1, deleteBuildArtifacts = true, buildNumbersNotToBeDiscarded = new List<string>() };
-			bi.licenseControl = new LicenseControl() { runChecks = "false", autoDiscover = "false", includePublishedArtifacts = "false", licenseViolationsRecipients = new List<string>(), scopes = new List<string>() };
-			bi.modules = new List<Module>();
+			Build bi =null;
+			var windowsIdentity = WindowsIdentity.GetCurrent();
+			if (windowsIdentity != null)
+				bi = new Build
+				{
+					name = buildDetail.BuildDefinition.Name,
+					number = buildDetail.BuildNumber,
+					agent = agent,
+					principal = windowsIdentity.ToString(),
+					durationMillis = Convert.ToInt64((DateTime.Now - buildDetail.StartTime).TotalMilliseconds),
+					buildAgent = new BuildAgent() { name = "Generic", version = "Generic" },
+					buildRetention =
+						new BuildRetention() { count = -1, deleteBuildArtifacts = true, buildNumbersNotToBeDiscarded = new List<string>() },
+					licenseControl =
+						new LicenseControl()
+						{
+							runChecks = "false",
+							autoDiscover = "false",
+							includePublishedArtifacts = "false",
+							licenseViolationsRecipients = new List<string>(),
+							scopes = new List<string>()
+						},
+					modules = new List<Module>(),
+					deployClient = new DeployClient { timeout = 0 }
+				};
 			return bi;
 		}
 	}
