@@ -73,6 +73,14 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.TeamFoundation.Build.Client, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE\ReferenceAssemblies\v2.0\Microsoft.TeamFoundation.Build.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Moq">
+      <HintPath>..\packages\Moq.4.2.1502.0911\lib\net40\Moq.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework, Version=2.6.3.13283, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
@@ -88,14 +96,16 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="ArtifactoryTestConstants.cs" />
     <Compile Include="AssertExtension.cs" />
     <Compile Include="RegexpCapturingGroupTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="regex_test\lib\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="DiscoveryTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="DeploymentItems\" />
     <Folder Include="regex_test\bin\" />
-    <Folder Include="TestResults\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="regex_test\JFrog.Artifactory.dll" />
@@ -110,6 +120,10 @@
     <ProjectReference Include="..\msbuild-artifactory-plugin\msbuild-artifactory-plugin.csproj">
       <Project>{3280f70a-8a97-4db7-9379-8f0732fae84f}</Project>
       <Name>msbuild-artifactory-plugin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\tfs-artifactory-activities\tfs-artifactory-activities.csproj">
+      <Project>{c7469181-1cff-46cb-93be-9fd0eb21fe49}</Project>
+      <Name>tfs-artifactory-activities</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

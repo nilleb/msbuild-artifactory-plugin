@@ -13,6 +13,7 @@ namespace JFrog.Artifactory.Model
     public class Build
     {
         public readonly static string STARTED_FORMAT = "{0}";//.000+0000";
+		public readonly static string ARTIFACTORY_DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.ssszzzz";
 
         /// <summary>
         /// build/assembly  version
