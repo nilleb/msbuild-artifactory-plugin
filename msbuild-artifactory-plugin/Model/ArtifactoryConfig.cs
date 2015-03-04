@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Xml.Serialization;
 
 namespace JFrog.Artifactory.Model
 {
-    [XmlRootAttribute("Project", Namespace = "http://schemas.microsoft.com/developer/msbuild/2003", IsNullable = false)]
+    [XmlRoot("Project", Namespace = "http://schemas.microsoft.com/developer/msbuild/2003", IsNullable = false)]
     public class ArtifactoryConfig
     {
         [XmlElement("PropertyGroup")]

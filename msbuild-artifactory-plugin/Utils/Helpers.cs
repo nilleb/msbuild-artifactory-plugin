@@ -1,10 +1,8 @@
-﻿using System.Text.RegularExpressions;
-using JFrog.Artifactory.Model;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Text.RegularExpressions;
+using JFrog.Artifactory.Model;
 
 namespace JFrog.Artifactory.Utils
 {

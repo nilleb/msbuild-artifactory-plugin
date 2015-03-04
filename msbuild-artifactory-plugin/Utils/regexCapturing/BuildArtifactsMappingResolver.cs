@@ -1,11 +1,8 @@
-﻿using JFrog.Artifactory.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace JFrog.Artifactory.Utils.regexCapturing
 {
@@ -19,7 +16,7 @@ namespace JFrog.Artifactory.Utils.regexCapturing
 			 * regular expression not to recognize it as part of the capturing groups. 
 			 */
 			//if (String.IsNullOrWhiteSpace(rootDirectory) || !System.IO.Path.IsPathRooted(rootDirectory))
-			if (!System.IO.Path.IsPathRooted(rootDirectory))
+			if (!Path.IsPathRooted(rootDirectory))
 			{
 				mapping.input = projectDirectory + "\\" + mapping.input;
 				rootDirectory = projectDirectory + "\\" + rootDirectory;

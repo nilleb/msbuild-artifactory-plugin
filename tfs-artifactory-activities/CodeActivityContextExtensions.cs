@@ -1,12 +1,8 @@
-﻿using Microsoft.TeamFoundation.Build.Activities.Extensions;
+﻿using System;
+using System.Activities;
+using Microsoft.TeamFoundation.Build.Activities.Extensions;
 using Microsoft.TeamFoundation.Build.Client;
 using Microsoft.TeamFoundation.Build.Workflow.Activities;
-using System;
-using System.Activities;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JFrog.Artifactory.TFSActivities
 {

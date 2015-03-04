@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace JFrog.Artifactory.Utils.regexCapturing
 {
@@ -90,7 +87,7 @@ namespace JFrog.Artifactory.Utils.regexCapturing
             }
 
             BuildArtifactsMapping p = obj as BuildArtifactsMapping;
-            if ((System.Object)p == null)
+            if ((Object)p == null)
             {
                 return false;
             }

@@ -1,12 +1,9 @@
-﻿using Microsoft.Build.Execution;
-using Microsoft.Build.Framework;
-using System;
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.Build.Execution;
+using Microsoft.Build.Framework;
 
 namespace JFrog.Artifactory
 {

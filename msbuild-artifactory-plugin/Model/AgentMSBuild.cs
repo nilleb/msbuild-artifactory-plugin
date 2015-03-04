@@ -1,5 +1,6 @@
 ﻿
 using System.Collections.Generic;
+
 namespace JFrog.Artifactory.Model
 {
     /// <summary>

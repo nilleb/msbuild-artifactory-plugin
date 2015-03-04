@@ -1,10 +1,9 @@
-﻿using JFrog.Artifactory.Model;
+﻿using System;
+using System.Collections.Generic;
+using JFrog.Artifactory.Model;
 using JFrog.Artifactory.Utils;
-using Microsoft.Build.Execution;
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
-using System;
-using System.Collections.Generic;
 
 namespace JFrog.Artifactory
 {

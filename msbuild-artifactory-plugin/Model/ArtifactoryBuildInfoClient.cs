@@ -1,9 +1,9 @@
-﻿using JFrog.Artifactory.Model;
-using JFrog.Artifactory.Utils.httpClient;
-using System;
+﻿using System;
 using System.IO;
 using System.Net;
 using System.Text;
+using JFrog.Artifactory.Model;
+using JFrog.Artifactory.Utils.httpClient;
 
 namespace JFrog.Artifactory.Utils
 {

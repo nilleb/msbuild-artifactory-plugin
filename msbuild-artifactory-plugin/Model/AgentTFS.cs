@@ -1,10 +1,8 @@
-﻿using Microsoft.Build.Framework;
-using System;
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using Microsoft.Build.Framework;
 
 namespace JFrog.Artifactory.Model
 {

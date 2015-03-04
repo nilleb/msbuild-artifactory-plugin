@@ -1,13 +1,11 @@
-﻿using JFrog.Artifactory.Model;
-using JFrog.Artifactory.Utils.regexCapturing;
-using NuGet;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Security.Principal;
 using System.Text;
 using System.Text.RegularExpressions;
+using JFrog.Artifactory.Model;
+using NuGet;
 
 namespace JFrog.Artifactory.Utils
 {

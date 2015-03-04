@@ -1,7 +1,7 @@
 ﻿using System;
-using JFrog.Artifactory.Utils.regexCapturing;
 using System.Collections.Generic;
 using System.IO;
+using JFrog.Artifactory.Utils.regexCapturing;
 using NUnit.Framework;
 
 ///In order to Debug/Run the NUnit test framework through Visual Studio, 
@@ -55,7 +55,7 @@ namespace msbuild_tests
         [Test]
         public void TestLessPlaceholdersInOutput()
         {
-            string projectPath = Path.GetDirectoryName(Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory()));
+            string projectPath = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
             Dictionary<string, string> resultMap = new Dictionary<string, string>();
             BuildArtifactsMapping mapping = new BuildArtifactsMapping();
 
@@ -72,7 +72,7 @@ namespace msbuild_tests
         [Test]
         public void TestComplexRegex()
         {
-            string projectPath = Path.GetDirectoryName(Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory()));
+            string projectPath = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
             Dictionary<string, string> resultMap = new Dictionary<string, string>();
             BuildArtifactsMapping mapping = new BuildArtifactsMapping();
 
@@ -97,7 +97,7 @@ namespace msbuild_tests
             mapping.output = @"msbuild-test\$1\$2.dll";
             
             Dictionary<string, string> resultMap = new Dictionary<string, string>();
-            string projectPath = Path.GetDirectoryName(Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory()));
+            string projectPath = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
 
             BuildArtifactsMappingResolver.matchMappingArtifacts(mapping, projectPath, resultMap);
 
@@ -131,7 +131,7 @@ namespace msbuild_tests
 
         private static string getTestFilesFolder()
         {
-            string currentPath = System.Environment.CurrentDirectory;
+            string currentPath = Environment.CurrentDirectory;
             return currentPath.Substring(0, currentPath.LastIndexOf("bin")) + "regex_test";
         }
     }

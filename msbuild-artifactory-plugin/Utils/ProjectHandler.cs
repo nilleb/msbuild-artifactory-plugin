@@ -1,12 +1,9 @@
-﻿using JFrog.Artifactory.Model;
-using Microsoft.Build.Evaluation;
-using Microsoft.Build.Framework;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Xml.Linq;
+using System.Xml.Serialization;
+using JFrog.Artifactory.Model;
 
 namespace JFrog.Artifactory.Utils
 {
@@ -64,8 +61,8 @@ namespace JFrog.Artifactory.Utils
             {
 
                 StringBuilder xmlContent = SolutionHandler.MsbuildInterpreter(artifactoryConfigurationFile, task);
-                System.Xml.Serialization.XmlSerializer reader = new System.Xml.Serialization.XmlSerializer(typeof(ArtifactoryConfig));
-                ArtifactoryConfiguration = (ArtifactoryConfig)reader.Deserialize(new System.IO.StringReader(xmlContent.ToString()));
+                XmlSerializer reader = new XmlSerializer(typeof(ArtifactoryConfig));
+                ArtifactoryConfiguration = (ArtifactoryConfig)reader.Deserialize(new StringReader(xmlContent.ToString()));
 
                 //Validate the xml file
                 if (ArtifactoryConfiguration.PropertyGroup == null || ArtifactoryConfiguration.PropertyGroup.Deployments == null ||
