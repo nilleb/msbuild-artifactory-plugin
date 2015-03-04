@@ -198,3 +198,6 @@ FakesAssemblies/
 /tfs-artifactory-activities/lib/System.Web.Http.dll
 /tfs-artifactory-activities/lib/System.Web.Http.xml
 /tfs-artifactory-activities/lib/tfs-artifactory-activities.dll
+/tfs-artifactory-activities/lib/JFrog.Artifactory.TFSActivities.dll
+
+ArtifactoryTestConstants.cs
