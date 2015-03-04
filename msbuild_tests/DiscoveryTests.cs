@@ -14,6 +14,7 @@ namespace msbuild_tests
 		public TestContext TestContext { get; set; }
 
 		[TestMethod]
+		[DeploymentItem(@"DeploymentItems\ArtifactoryWrapper", @"DeploymentItems\ArtifactoryWrapper")]
 		public void TfsArtifactoryWrapperTests_()
 		{
 			var mBuildDefinition = new Mock<IBuildDefinition>();
@@ -32,7 +33,7 @@ namespace msbuild_tests
 			var agent = mAgent.Object;
 			var sourcesDirectory = TestContext.TestDeploymentDir;
 			var wrapper = new ArtifactoryWrapper(ArtifactoryTestConstants.SERVER, ArtifactoryTestConstants.USER, ArtifactoryTestConstants.PASSWORD,
-				@"DeploymentItems\ArtifactoryWrapper", "TFSArtifactoryIntegration", ArtifactoryTestConstants.REPOSITORY, mBuild.Object, buildInfoLog, agent,
+				@"DeploymentItems\ArtifactoryWrapper\(.+)", @"TFSArtifactoryIntegration\$1", ArtifactoryTestConstants.REPOSITORY, mBuild.Object, buildInfoLog, agent,
 				sourcesDirectory, true);
 			wrapper.Deploy();
 		}

@@ -69,7 +69,7 @@ namespace JFrog.Artifactory.Utils
         }
 
         /// <summary>
-        /// Find all projects referenced by the current .csporj
+        /// Find all projects referenced by the current .csproj
         /// </summary>
         private void ProccessModuleRef()
         {

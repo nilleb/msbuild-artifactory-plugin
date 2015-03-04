@@ -2,10 +2,10 @@
 using JFrog.Artifactory.Utils.regexCapturing;
 using NuGet;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -30,8 +30,7 @@ namespace JFrog.Artifactory.Utils
 			build.agent = Agent.BuildAgentFactory(task);
 
 			//get the current use from the windows OS
-			System.Security.Principal.WindowsIdentity user;
-			user = System.Security.Principal.WindowsIdentity.GetCurrent();
+			var user = WindowsIdentity.GetCurrent();
 			if (user != null) build.principal = string.Format(@"{0}", user.Name);
 
 			//Calculate how long it took to do the build
@@ -56,7 +55,7 @@ namespace JFrog.Artifactory.Utils
 		/// <summary>
 		/// Read all referenced nuget's in the .csproj calculate their md5, sha1 and id.
 		/// </summary>
-		public static void ProcessModule(Build build, ProjectModel project, ArtifactoryBuild task)
+		/*public static void ProcessModule(Build build, ProjectModel project, ArtifactoryBuild task)
 		{
 			var module = new Module(project.AssemblyName);
 
@@ -91,6 +90,14 @@ namespace JFrog.Artifactory.Utils
 			}
 			module.AddNuGetDependencies(localSource, packageConfigPath, task.Configuration);
 			build.modules.Add(module);
+		}*/
+
+		public static void ProcessModule(Build build, ProjectModel project, ArtifactoryBuild task)
+		{
+			var md = new ModuleDetails(build, project, Path.Combine(task.SolutionRoot, "packages"), task.DeploymentRepository,
+				task.Configuration);
+			foreach (var dd in md.DeployDetails)
+				task.deployableArtifactBuilderMap.AddOrSet( md.Module.id + ":" + dd.file.Name, dd);
 		}
 
 		/// <summary>

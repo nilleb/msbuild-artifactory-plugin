@@ -104,10 +104,12 @@
     <Compile Include="DiscoveryTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DeploymentItems\" />
     <Folder Include="regex_test\bin\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DeploymentItems\ArtifactoryWrapper\artifact.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="regex_test\JFrog.Artifactory.dll" />
     <Content Include="regex_test\lib\JFrog.Artifactory.dll" />
     <Content Include="regex_test\obj\Debug\JFrog.Artifactory.dll" />

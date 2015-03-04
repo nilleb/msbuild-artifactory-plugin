@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Activities;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Security.Principal;
 using JFrog.Artifactory.Model;
 using JFrog.Artifactory.Utils;
@@ -25,12 +23,33 @@ namespace JFrog.Artifactory.TFSActivities
 		private readonly string _sourcesDirectory;
 		private readonly Agent _agent;
 		private readonly IBuildInfoLog _log;
+		private readonly string _moduleName;
 
 		public ArtifactoryWrapper(string artifactoryUrl, string username, string password,
 			string inputPattern, string outputPattern, string targetRepository,
 			IBuildDetail buildDetail, IBuildInfoLog log, Agent agent, string sourcesDirectory,
 			bool doIndexBuildInfo)
 		{
+			_moduleName = buildDetail.BuildDefinition.Name;
+			_log = log;
+			_agent = agent;
+			_sourcesDirectory = sourcesDirectory;
+			_targetRepository = targetRepository;
+			_password = password;
+			_username = username;
+			_artifactoryUrl = artifactoryUrl;
+			_inputPattern = inputPattern;
+			_outputPattern = outputPattern;
+			_buildDetail = buildDetail;
+			_doIndexBuildInfo = doIndexBuildInfo;
+		}
+
+		public ArtifactoryWrapper(string moduleName, string artifactoryUrl, string username, string password,
+			string inputPattern, string outputPattern, string targetRepository,
+			IBuildDetail buildDetail, IBuildInfoLog log, Agent agent, string sourcesDirectory,
+			bool doIndexBuildInfo)
+		{
+			_moduleName = moduleName;
 			_log = log;
 			_agent = agent;
 			_sourcesDirectory = sourcesDirectory;
@@ -46,34 +65,34 @@ namespace JFrog.Artifactory.TFSActivities
 
 		public void Deploy()
 		{
-			wrap(_artifactoryUrl, _username, _password, _inputPattern, _outputPattern, _targetRepository, _buildDetail, _log, _agent, _sourcesDirectory, _doIndexBuildInfo);
-		}
+			var client = new ArtifactoryBuildInfoClient(_artifactoryUrl, _username, _password, _log);
 
-		private void wrap(string artifactoryUrl, string username, string password,
-			string inputPattern, string outputPattern, string targetRepository,
-			IBuildDetail buildDetail, IBuildInfoLog log, Agent agent, string sourcesDirectory,
-			bool doIndexBuildInfo)
-		{
-			var client = new ArtifactoryBuildInfoClient(artifactoryUrl, username, password, log);
-
-			CodeActivityContext context;
-			var bi = forgeBuildInfo(agent, buildDetail);
+			var bi = forgeBuildInfo(_agent, _buildDetail);
 			if (bi != null)
 			{
 				client.setConnectionTimeout(bi.deployClient);
 
 				var artifacts =
 					BuildArtifacts.resolve(
-						new ProjectModel.DeployAttribute { InputPattern = inputPattern, OutputPattern = outputPattern },
-						sourcesDirectory,
-						targetRepository);
+						new ProjectModel.DeployAttribute { InputPattern = _inputPattern, OutputPattern = _outputPattern },
+						_sourcesDirectory,
+						_targetRepository);
+
+				completeModuleInfo(artifacts, bi);
 
 				foreach (var artifact in artifacts)
 					client.deployArtifact(artifact);
 
-				if (artifacts.Any() && doIndexBuildInfo)
+				if (artifacts.Any() && _doIndexBuildInfo)
 					client.sendBuildInfo(bi);
 			}
+		}
+
+		private void completeModuleInfo(List<DeployDetails> artifacts, Build bi)
+		{
+			var md = new ModuleDetails(_moduleName);
+			md.AddDeployDetails(artifacts);
+			bi.modules.Add(md.Module);
 		}
 
 		private Build forgeBuildInfo(Agent agent, IBuildDetail buildDetail)
