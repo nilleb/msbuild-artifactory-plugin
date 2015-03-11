@@ -123,7 +123,7 @@ namespace JFrog.Artifactory.TFSActivities
 							licenseViolationsRecipients = new List<string>(),
 							scopes = new List<string>()
 						},
-					url = agent.BuildAgentUrl(),
+					url = string.Format("{0}?url={1}", agent.BuildAgentUrl(), buildDetail.BuildServer.TeamProjectCollection.Uri.AbsoluteUri),
 					vcsRevision = buildDetail.SourceGetVersion,
 					modules = new List<Module>(),
 					deployClient = new DeployClient { timeout = 0 }
