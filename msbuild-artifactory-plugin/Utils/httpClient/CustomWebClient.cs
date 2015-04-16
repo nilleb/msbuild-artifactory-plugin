@@ -18,15 +18,19 @@ namespace JFrog.Artifactory.Utils.httpClient
 
 		public CustomWebClient(string username, string password)
 		{
-			this._username = username;
-			this._password = password;
+			init(username, password);
 		}
 
 		public CustomWebClient(string username, string password, int timeout)
 		{
+			init(username, password);
+			this._timeout = timeout;
+		}
+
+		public void init(string username, string password)
+		{
 			this._username = username;
 			this._password = password;
-			this._timeout = timeout;
 		}
 
 		protected override WebRequest GetWebRequest(Uri uri)

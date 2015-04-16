@@ -107,7 +107,7 @@ namespace JFrog.Artifactory.TFSActivities
 					started = string.Format(CultureInfo.InvariantCulture, "{0:" + Build.ARTIFACTORY_DATE_FORMAT + "}", buildDetail.StartTime),
 					startedDateMillis = buildDetail.StartTime.ToSecondsFromTheEpoch().ToString(),
 					agent = agent,
-					principal = windowsIdentity.User.Value,
+					principal = windowsIdentity.Name,
 					artifactoryPrincipal = _username,
 					durationMillis = Convert.ToInt64((DateTime.Now - buildDetail.StartTime).TotalMilliseconds),
 					buildAgent = new BuildAgent { name = "Generic", version = "Generic" },
