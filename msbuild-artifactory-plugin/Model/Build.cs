@@ -68,6 +68,8 @@ namespace JFrog.Artifactory.Model
 
         public LicenseControl licenseControl { get; set; }
 
+        public BlackDuckGovernance blackDuckGovernance { get; set; }
+
         public BuildRetention buildRetention { get; set; }
 
         /// <summary>
@@ -135,6 +137,18 @@ namespace JFrog.Artifactory.Model
         public List<string> licenseViolationsRecipients { get; set; }
         public List<string> scopes { get; set; }
 
+    }
+
+    public class BlackDuckGovernance
+    {
+        public string runChecks { get; set; }
+        public string appName { get; set; }
+        public string appVersion { get; set; }
+        public string autoCreateMissingComponentRequests { get; set; }
+        public string autoDiscardStaleComponentRequests { get; set; }
+        public string includePublishedArtifacts { get; set; }
+        public List<string> reportRecipients { get; set; }
+        public List<string> scopes { get; set; }        
     }
 
     public class BuildRetention
